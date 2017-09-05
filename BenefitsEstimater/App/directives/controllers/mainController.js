@@ -42,23 +42,20 @@ app.controller("myCtrl", function ($scope, CrudService) {
 
     //creates a front end data point
     $scope.addDependant = function () {
-        var discount = .90;
-        var tmp = 500;
-        if ($scope.name.toLowerCase().startsWith("a")) {
-            tmp = tmp * discount;
-        }
-
-        $scope.model.expense.annual += tmp;
-
         if ($scope.employeeEntered()) {
+            var discount = .10;
+            var tmp = 500;
+            if ($scope.name.toLowerCase().startsWith("a")) {
+                tmp = tmp * (1 - discount);
+            }
+            $scope.model.expense.annual += tmp;
             var d = {
                 name: $scope.name,
                 cost: tmp
             }
             $scope.model.dependents.push(d);
         } else {
-            $scope.model.employee = $scope.name;
-            $scope.model.expense.annual += 500;
+            addEmployee($scope.name);          
         }
 
         //Resets the form after adding an employee or dependent
@@ -71,6 +68,16 @@ app.controller("myCtrl", function ($scope, CrudService) {
 			.removeAttr('checked')
 			.removeAttr('selected');
     };
+
+    function addEmployee(name) {
+        var discount = .10;
+        var tmp = 1000;
+        if ($scope.name.toLowerCase().startsWith("a")) {
+            tmp = tmp * (1 - discount);
+        }
+        $scope.model.employee = $scope.name;
+        $scope.model.expense.annual += tmp;
+    }
 
     //shows visual data representation
     var chart;
