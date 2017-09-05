@@ -1,0 +1,76 @@
+
+    <!-- -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="https://www.paylocity.com/" class="navbar-brand logo-dark" title="Paylocity"> </a> <span class="navbar-brand"><strong> - Bennefits Calculator</strong></span>
+            </div>
+        </div>
+    </nav>
+    <!-- -->
+    <div class="container-fluid bg-1">
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Total Employees Entered: {{totalEmployeesEntered}}</p>
+                <p><strong>Income:</strong></p>
+                <p>Per pay period: {{model.salary | currency}}</p>
+                <p>Yearly: {{annulalIncome | currency}}</p>
+                <br />
+                <p><strong>Contributions:</strong></p>
+                <p>Per pay period: {{monthlyCost | currency}}</p>
+                <p>Yearly: {{model.expense.annual | currency}}</p>
+            </div>
+
+            <div class="col-sm-4">
+                <p>
+                    Name : <input type="text" ng-model="name" placeholder="Enter name here"> &nbsp;<br />
+                    <button type="button" class="btn orange" ng-click="addDependant()">Add <span ng-if="employeeEntered()">Dependant</span><span ng-if="!employeeEntered()">Employee</span></button>
+
+                    <button type="button" class="btn orange" ng-click="clearDependents()">Clear</button>
+                    <button class="btn btn-success" ng-click="create()">
+                        Save
+                    </button>
+                </p>
+            </div>
+            <div class="col-sm-4">
+                <p>
+                    <strong>Employee: </strong><span ng-if="employeeEntered()">{{model.employee}}</span>
+                </p>
+                <strong>Dependants</strong>
+
+                <ul class="list-group">
+                    <li ng-repeat="x in model.dependents" class="list-group-item">
+                        <span class="material-icons">person</span> &nbsp;
+                        {{x.name}} - {{x.cost | currency}} &nbsp;
+                        <button type="button" class="btn btn-default btn-sm" ng-click="removeDependant($index)">
+                            <span class="glyphicon glyphicon-remove-circle"></span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-3 text-center">
+        <h3>Charts</h3><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <p>Annual Income <span class="glyphicon glyphicon-arrow-right"></span> Annual Bennefits</p>
+                <div id="annualChart"></div>
+            </div>
+            <div class="col-sm-4">
+                <p>paycheck Income <span class="glyphicon glyphicon-arrow-right"></span> annual benenfits</p>
+                <div id="angularChart"></div>
+            </div>
+            <div class="col-sm-4">
+
+                <p>paycheck Income <span class="glyphicon glyphicon-arrow-right"></span> paycheck benenfits</p>
+                <div id="perpayperiodChart"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid bg-4 text-center">
+        <p>Stay classy San Diego, and thanks for stopping by.</p>
+        <p>But mainly, <em>stay classy...</em></p>
+    </footer>
