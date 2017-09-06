@@ -1,5 +1,6 @@
 app.controller("myCtrl", function ($scope, CrudService) {
     //original model.
+    console.log('myCtrl');
     var model = {
         employee: '',
         salary: 2000,

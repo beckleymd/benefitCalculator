@@ -21,7 +21,6 @@ namespace BenefitsEstimater
                     "~/Scripts/c3.js",
                     "~/App/appModule.js",
                     "~/App/services/CrudService.js",
-                    "~/App/directives/controllers/mainController.js",
                     "~/App/directives/main.js",
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));

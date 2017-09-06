@@ -13,7 +13,7 @@ namespace BenefitsEstimater
     {
         protected void Application_Start()
         {
-            
+            //initialize the database on startup
             System.Data.Entity.Database.SetInitializer(new BenefitsEstimater.Models.BenefitsEstimaterContextInitializer());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
