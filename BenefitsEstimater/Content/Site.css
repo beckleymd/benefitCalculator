@@ -44,7 +44,8 @@ textarea {
 
     .logo-dark {
         width: 125px;
-        background: url(https://www.paylocity.com/wp-content/themes/paylocity/library/images/logo-dark.png);
+        /*image should be 20x20*/
+        background: url(http://www.clker.com/cliparts/E/8/5/l/9/g/red-nike-logo-hi.png);
         background-repeat: no-repeat;
     }
 

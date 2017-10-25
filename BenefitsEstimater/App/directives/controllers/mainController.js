@@ -1,6 +1,5 @@
 app.controller("myCtrl", function ($scope, CrudService) {
     //original model.
-    console.log('myCtrl');
     var model = {
         employee: '',
         salary: 2000,
@@ -30,7 +29,7 @@ app.controller("myCtrl", function ($scope, CrudService) {
         $scope.model.expense.annual = 0;
 
         $scope.model.dependents = [];
-        drawCharts();
+        updateView();
     }
 
     //removes a single dependant
@@ -38,14 +37,16 @@ app.controller("myCtrl", function ($scope, CrudService) {
         var c = $scope.model.dependents[toRemove].cost;
         $scope.model.dependents.splice(toRemove, 1);
         $scope.model.expense.annual -= c;
-        drawCharts();
+        updateView();
     }
 
     //creates a front end data point
     $scope.addDependant = function () {
         if ($scope.employeeEntered()) {
+            //move to config file
             var discount = .10;
             var tmp = 500;
+
             if ($scope.name.toLowerCase().startsWith("a")) {
                 tmp = tmp * (1 - discount);
             }
@@ -61,7 +62,7 @@ app.controller("myCtrl", function ($scope, CrudService) {
 
         //Resets the form after adding an employee or dependent
         //move to own function
-        drawCharts();
+        updateView();
         $scope.name = '';
         $(':input')
 			.not(':hidden')
@@ -71,7 +72,9 @@ app.controller("myCtrl", function ($scope, CrudService) {
     };
 
     function addEmployee(name) {
+        //read from config file
         var discount = .10;
+        //config file
         var tmp = 1000;
         if ($scope.name.toLowerCase().startsWith("a")) {
             tmp = tmp * (1 - discount);
@@ -82,7 +85,7 @@ app.controller("myCtrl", function ($scope, CrudService) {
 
     //shows visual data representation
     var chart;
-    function drawCharts() {
+    function updateView() {
         $scope.monthlyCost = $scope.model.expense.annual / 26;
         $scope.updateCounter();
         $scope.hardcodedGenerate();
@@ -98,7 +101,6 @@ app.controller("myCtrl", function ($scope, CrudService) {
     }
     
     $scope.model = model;
-
     //this is a setup function that is jujst waiting to be created
     $scope.annulalIncome = $scope.model.salary * $scope.model.payperiods;
     $scope.monthlyCost = $scope.model.expense.annual / 26;
